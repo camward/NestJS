@@ -27,6 +27,7 @@
     "@nestjs/jwt": "^8.0.1",
     "@nestjs/passport": "^8.2.1",
     "@nestjs/platform-express": "^8.0.0",
+    "@nestjs/serve-static": "^2.2.2",
     "@typegoose/typegoose": "^9.8.1",
     "app-root-path": "^3.0.0",
     "bcryptjs": "^2.4.3",
