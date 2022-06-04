@@ -6,6 +6,6 @@ import { HhService } from './hh.service';
 @Module({
 	providers: [HhService],
 	imports: [ConfigModule, HttpModule],
-	exports: [HhService],
+	exports: [HhService]
 })
-export class HhModule {}
+export class HhModule { }

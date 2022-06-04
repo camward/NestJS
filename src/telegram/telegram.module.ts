@@ -7,25 +7,23 @@ import { TelegramService } from './telegram.service';
 @Module({})
 export class TelegramModule {
 	static forRootAsync(options: ITelegramModuleAsyncOptions): DynamicModule {
-		const asyncOptions = this.createAsyncOptionsProvider(options);
+		const asyncOptions = TelegramModule.createAsyncOptionsProvider(options);
 		return {
 			module: TelegramModule,
 			imports: options.imports,
 			providers: [TelegramService, asyncOptions],
-			exports: [TelegramService],
+			exports: [TelegramService]
 		};
 	}
 
-	private static createAsyncOptionsProvider(
-		options: ITelegramModuleAsyncOptions,
-	): Provider {
+	private static createAsyncOptionsProvider(options: ITelegramModuleAsyncOptions): Provider {
 		return {
 			provide: TELEGRAM_MODULE_OPTIONS,
 			useFactory: async (...args: any[]) => {
 				const config = await options.useFactory(...args);
 				return config;
 			},
-			inject: options.inject || [],
+			inject: options.inject || []
 		};
 	}
 }

@@ -11,11 +11,11 @@ import { ProductService } from './product.service';
 			{
 				typegooseClass: ProductModel,
 				schemaOptions: {
-					collection: 'Product',
-				},
-			},
-		]),
+					collection: 'Product'
+				}
+			}
+		])
 	],
-	providers: [ProductService],
+	providers: [ProductService]
 })
-export class ProductModule {}
+export class ProductModule { }

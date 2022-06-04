@@ -8,7 +8,9 @@ export class TelegramService {
 	bot: Telegraf;
 	options: ITelegramOptions;
 
-	constructor(@Inject(TELEGRAM_MODULE_OPTIONS) options: ITelegramOptions) {
+	constructor(
+		@Inject(TELEGRAM_MODULE_OPTIONS) options: ITelegramOptions
+	) {
 		this.bot = new Telegraf(options.token);
 		this.options = options;
 	}

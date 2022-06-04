@@ -16,18 +16,18 @@ import { JwtStratagy } from './strategies/jwt.stratagy';
 			{
 				typegooseClass: UserModel,
 				schemaOptions: {
-					collection: 'User',
-				},
-			},
+					collection: 'User'
+				}
+			}
 		]),
 		ConfigModule,
 		JwtModule.registerAsync({
 			imports: [ConfigModule],
 			inject: [ConfigService],
-			useFactory: getJWTConfig,
+			useFactory: getJWTConfig
 		}),
-		PassportModule,
+		PassportModule
 	],
-	providers: [AuthService, JwtStratagy],
+	providers: [AuthService, JwtStratagy]
 })
-export class AuthModule {}
+export class AuthModule { }

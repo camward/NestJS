@@ -11,14 +11,14 @@ import { JwtService } from '@nestjs/jwt';
 export class AuthService {
 	constructor(
 		@InjectModel(UserModel) private readonly userModel: ModelType<UserModel>,
-		private readonly jwtService: JwtService,
-	) {}
+		private readonly jwtService: JwtService
+	) { }
 
 	async createUser(dto: AuthDto) {
 		const salt = await genSalt(10);
 		const newUser = new this.userModel({
 			email: dto.login,
-			passwordHash: await hash(dto.password, salt),
+			passwordHash: await hash(dto.password, salt)
 		});
 		return newUser.save();
 	}
@@ -27,10 +27,7 @@ export class AuthService {
 		return this.userModel.findOne({ email }).exec();
 	}
 
-	async validateUser(
-		email: string,
-		password: string,
-	): Promise<Pick<UserModel, 'email'>> {
+	async validateUser(email: string, password: string): Promise<Pick<UserModel, 'email'>> {
 		const user = await this.findUser(email);
 		if (!user) {
 			throw new UnauthorizedException(USER_NOT_FOUND_ERROR);
@@ -45,7 +42,7 @@ export class AuthService {
 	async login(email: string) {
 		const payload = { email };
 		return {
-			access_token: await this.jwtService.signAsync(payload),
+			access_token: await this.jwtService.signAsync(payload)
 		};
 	}
 }

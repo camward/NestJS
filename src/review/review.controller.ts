@@ -9,7 +9,7 @@ import {
 	Post,
 	UseGuards,
 	UsePipes,
-	ValidationPipe,
+	ValidationPipe
 } from '@nestjs/common';
 import { IdValidationPipe } from 'src/pipes/ad-validation.pipe';
 import { TelegramService } from 'src/telegram/telegram.service';
@@ -22,8 +22,8 @@ import { ReviewService } from './review.service';
 export class ReviewController {
 	constructor(
 		private readonly reviewService: ReviewService,
-		private readonly telegramService: TelegramService,
-	) {}
+		private readonly telegramService: TelegramService
+	) { }
 
 	@UsePipes(new ValidationPipe())
 	@Post('create')
@@ -34,12 +34,11 @@ export class ReviewController {
 	@UsePipes(new ValidationPipe())
 	@Post('notify')
 	async notify(@Body() dto: CreateReviewDto) {
-		const message =
-			`Имя: ${dto.name}\n` +
-			`Заголовок: ${dto.title}\n` +
-			`Описание: ${dto.description}\n` +
-			`Рейтинг: ${dto.rating}\n` +
-			`ID Продукта: ${dto.productId}`;
+		const message = `Имя: ${dto.name}\n`
+			+ `Заголовок: ${dto.title}\n`
+			+ `Описание: ${dto.description}\n`
+			+ `Рейтинг: ${dto.rating}\n`
+			+ `ID Продукта: ${dto.productId}`;
 		return this.telegramService.sendMessage(message);
 	}
 
